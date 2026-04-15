@@ -48,7 +48,7 @@ public class CadastroFornecedor extends javax.swing.JFrame {
         jTextField4 = new javax.swing.JTextField();
         jFormattedTextField1 = new javax.swing.JFormattedTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel3.setText("CNPJ:");
 
