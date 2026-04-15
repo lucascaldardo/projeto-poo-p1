@@ -3,31 +3,29 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package janelas;
-
-import entidades.Fornecedor;
-import entidades.Produto;
+import entidades.Usuario;
 import java.util.LinkedList;
 import javax.swing.DefaultComboBoxModel;
-
 /**
  *
  * @author calld
  */
-public class CadastroFornecedor extends javax.swing.JFrame {
+public class CadastroUsuario extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(CadastroFornecedor.class.getName());
-    private LinkedList<Fornecedor> listaFornecedores; 
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(CadastroUsuario.class.getName());
+    private LinkedList<Usuario> listaUsuarios; 
     private boolean novo = false;
 
-    /**
-     * Creates new form CadastroFornecedor
-     */
-    public CadastroFornecedor(LinkedList<Fornecedor> listaFornecedores) {
+   public CadastroUsuario() {
         initComponents();
-        this.listaFornecedores = listaFornecedores;
-        jComboBox1.setModel(new DefaultComboBoxModel(listaFornecedores.toArray()));
     }
 
+    
+    public CadastroUsuario(LinkedList<Usuario> listaUsuarios) {
+        initComponents();
+        this.listaUsuarios = listaUsuarios;
+        jComboBox1.setModel(new DefaultComboBoxModel(listaUsuarios.toArray()));
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -39,25 +37,23 @@ public class CadastroFornecedor extends javax.swing.JFrame {
 
         jLabel3 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
         btnNovo = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         btnSalvar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
-        jTextField4 = new javax.swing.JTextField();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
+        jTextField3 = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jPasswordField1 = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel3.setText("CNPJ:");
-
-        jLabel4.setText("Telefone:");
+        jLabel3.setText("Login:");
 
         btnNovo.setText("Novo");
         btnNovo.addActionListener(this::btnNovoActionPerformed);
 
-        jLabel1.setText("Fornecedores:");
+        jLabel1.setText("Cliente:");
 
         btnSalvar.setText("Salvar");
         btnSalvar.addActionListener(this::btnSalvarActionPerformed);
@@ -67,39 +63,36 @@ public class CadastroFornecedor extends javax.swing.JFrame {
         jComboBox1.addItemListener(this::jComboBox1ItemStateChanged);
         jComboBox1.addActionListener(this::jComboBox1ActionPerformed);
 
-        try {
-            jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###/####-##")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
+        jLabel4.setText("Senha:");
+
+        jPasswordField1.setText("jPasswordField2");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(90, 90, 90)
+                .addGap(54, 54, 54)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnNovo)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 211, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jComboBox1, 0, 99, Short.MAX_VALUE)
-                        .addComponent(jTextField2)
-                        .addComponent(jTextField4))
-                    .addComponent(btnSalvar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jFormattedTextField1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(123, 123, 123))
+                        .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING))
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 123, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jTextField2)
+                    .addComponent(btnSalvar, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
+                    .addComponent(jPasswordField1))
+                .addGap(71, 71, 71))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(77, 77, 77)
+                .addGap(55, 55, 55)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -108,69 +101,79 @@ public class CadastroFornecedor extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
-                    .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnNovo)
                     .addComponent(btnSalvar))
-                .addContainerGap(119, Short.MAX_VALUE))
+                .addContainerGap(61, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-           Fornecedor fornecedor = null;
-
-            if (novo) {
-                fornecedor = new Fornecedor();
-            } else {
-                fornecedor = (Fornecedor) jComboBox1.getSelectedItem();
-            }
-
-            fornecedor.setNome(jTextField2.getText());
-            fornecedor.setCnpj(jFormattedTextField1.getText());
-            fornecedor.setTelefone(jTextField4.getText());
-
-            if (novo) {
-                jComboBox1.addItem(fornecedor); 
-                listaFornecedores.add(fornecedor);
-            }
-
-            btnNovo.setEnabled(true);
-  
-    }//GEN-LAST:event_btnSalvarActionPerformed
-
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
-        novo = true;
-        btnSalvar.setEnabled(true);  
-        btnNovo.setEnabled(false);
+       novo = true;
+        btnSalvar.setEnabled(true); 
+        btnNovo.setEnabled(false); 
+        
+        jTextField2.setText("");
+        jTextField3.setText("");
+        jPasswordField1.setText("");
     }//GEN-LAST:event_btnNovoActionPerformed
 
+    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+        Usuario usuario = null;
+
+        if (novo) {
+            usuario = new Usuario();
+        } else {
+            usuario = (Usuario) jComboBox1.getSelectedItem();
+        }
+
+        if (usuario == null) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Por favor, clique no botão 'Novo' antes de salvar!");
+            return; 
+        }
+
+        usuario.setNome(jTextField2.getText());
+        usuario.setLogin(jTextField3.getText());
+        // No campo de senha, usamos getPassword() em vez de getText(), e convertemos para String
+        usuario.setSenha(new String(jPasswordField1.getPassword()));
+
+        if (novo) {
+            jComboBox1.addItem(usuario); 
+            listaUsuarios.add(usuario);
+        }
+
+        btnNovo.setEnabled(true); 
+        novo = false;
+        this.dispose();
+    }//GEN-LAST:event_btnSalvarActionPerformed
+
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
+      
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
-        if (evt.getStateChange() == java.awt.event.ItemEvent.SELECTED) {
+          if (evt.getStateChange() == java.awt.event.ItemEvent.SELECTED) {
+            Usuario usuario = (Usuario) jComboBox1.getSelectedItem();
+            
+            jTextField2.setText(usuario.getNome());
+            jTextField3.setText(usuario.getLogin());
+            jPasswordField1.setText(usuario.getSenha());
+            
+            btnSalvar.setEnabled(true);
+            btnNovo.setEnabled(true);
+            novo = false;
+        }
         
-        Fornecedor fornecedor = (Fornecedor) jComboBox1.getSelectedItem();
-        
-        // Coloca os dados de volta nos campos de texto
-        jTextField2.setText(fornecedor.getNome());
-        jFormattedTextField1.setText(fornecedor.getCnpj());
-        jTextField4.setText(fornecedor.getTelefone());
-        
-        btnSalvar.setEnabled(true);
-        btnNovo.setEnabled(true);
-        novo = false;
-    }
     }//GEN-LAST:event_jComboBox1ItemStateChanged
 
     /**
@@ -195,19 +198,19 @@ public class CadastroFornecedor extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new CadastroFornecedor(null).setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new CadastroUsuario().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnNovo;
     private javax.swing.JButton btnSalvar;
-    private javax.swing.JComboBox<Fornecedor> jComboBox1;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
+    private javax.swing.JComboBox<Usuario> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTextField3;
     // End of variables declaration//GEN-END:variables
 }

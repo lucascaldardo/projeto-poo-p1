@@ -4,6 +4,12 @@
  */
 package janelas;
 
+import entidades.Cliente;
+import entidades.Fornecedor;
+import entidades.Produto;
+import entidades.Usuario; 
+import java.util.LinkedList;
+
 /**
  *
  * @author calld
@@ -12,6 +18,12 @@ public class Principal extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Principal.class.getName());
 
+    
+    private LinkedList<Fornecedor> listaFornecedores = new LinkedList<>();
+    private LinkedList<Produto> listaProdutos = new LinkedList<>();
+    private LinkedList<Cliente> listaClientes = new LinkedList<>();
+    private LinkedList<Usuario> listaUsuarios = new LinkedList<>();
+    private boolean novo = false;
     /**
      * Creates new form Principal
      */
@@ -28,21 +40,205 @@ public class Principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        comboProduto = new javax.swing.JComboBox<>();
+        jLabel3 = new javax.swing.JLabel();
+        comboFornecedor = new javax.swing.JComboBox<>();
+        jTextField2 = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        btFornecedor = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        btNovo = new javax.swing.JButton();
+        btSalvar = new javax.swing.JButton();
+        jTextField3 = new javax.swing.JTextField();
+        jTextField4 = new javax.swing.JTextField();
+        btUsuario = new javax.swing.JButton();
+        btnCadastroClientes = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+                formWindowGainedFocus(evt);
+            }
+            public void windowLostFocus(java.awt.event.WindowEvent evt) {
+            }
+        });
+
+        jLabel1.setText("Produtos:");
+
+        jLabel2.setText("Descrição:");
+
+        comboProduto.addItemListener(this::comboProdutoItemStateChanged);
+        comboProduto.addActionListener(this::comboProdutoActionPerformed);
+
+        jLabel3.setText("Preço: ");
+
+        jLabel4.setText("Quantidade:");
+
+        btFornecedor.setText("Cadastro Fornecedor");
+        btFornecedor.addActionListener(this::btFornecedorActionPerformed);
+
+        jLabel5.setText("Fornecedor:");
+
+        btNovo.setText("Novo");
+        btNovo.addActionListener(this::btNovoActionPerformed);
+
+        btSalvar.setText("Salvar");
+        btSalvar.addActionListener(this::btSalvarActionPerformed);
+
+        btUsuario.setText("Cadastro Usuario");
+        btUsuario.addActionListener(this::btUsuarioActionPerformed);
+
+        btnCadastroClientes.setText("Cadastro Clientes");
+        btnCadastroClientes.addActionListener(this::btnCadastroClientesActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(90, 90, 90)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btNovo)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 66, Short.MAX_VALUE)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(18, 18, 18))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(84, 84, 84)
+                        .addComponent(btFornecedor, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnCadastroClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(14, 14, 14)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(comboProduto, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jTextField2)
+                        .addComponent(jTextField3)
+                        .addComponent(jTextField4)
+                        .addComponent(comboFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE))
+                .addGap(75, 75, 75))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCadastroClientes)
+                    .addComponent(btFornecedor)
+                    .addComponent(btUsuario))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(comboProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(comboFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btNovo)
+                    .addComponent(btSalvar))
+                .addContainerGap(96, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNovoActionPerformed
+        novo = true;
+        btSalvar.setEnabled(true);
+        btNovo.setEnabled(false);
+    }//GEN-LAST:event_btNovoActionPerformed
+
+    private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
+        // Importante: certifique-se de que a classe Produto foi importada lá no topo!
+    Produto produto = null;
+
+    if (novo) {
+        produto = new Produto();
+    } else {
+        // Pega o produto selecionado na lista para editar
+        produto = (Produto) comboProduto.getSelectedItem();
+    }
+
+    // Adaptado para os seus nomes: jTextField2 (Descrição), jTextField3 (Preço), jTextField4 (Quantidade)
+    produto.setDescricao(jTextField2.getText());
+    produto.setPreco(Double.parseDouble(jTextField3.getText()));
+    produto.setQuantidade(Integer.parseInt(jTextField4.getText()));
+    
+    // Pega o fornecedor que foi selecionado na outra caixinha
+    produto.setFornecedor((Fornecedor) comboFornecedor.getSelectedItem());
+
+    if (novo) {
+        comboProduto.addItem(produto);
+        comboProduto.setSelectedItem(produto);
+    }
+
+    btNovo.setEnabled(true);
+    }//GEN-LAST:event_btSalvarActionPerformed
+
+    private void comboProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboProdutoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboProdutoActionPerformed
+
+    private void comboProdutoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboProdutoItemStateChanged
+       if (evt.getStateChange() == java.awt.event.ItemEvent.SELECTED) {
+            
+            Produto produto = (Produto) comboProduto.getSelectedItem();
+            
+            // Preenche os seus campos de texto com os dados do objeto
+            jTextField2.setText(produto.getDescricao());
+            jTextField3.setText(produto.getPreco().toString());
+            jTextField4.setText(produto.getQuantidade().toString());
+            
+            // Seleciona o fornecedor correspondente na outra listinha
+            comboFornecedor.setSelectedItem(produto.getFornecedor());
+            
+            btSalvar.setEnabled(true);
+            btNovo.setEnabled(true);
+            novo = false;
+        }
+    }//GEN-LAST:event_comboProdutoItemStateChanged
+
+    private void btFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btFornecedorActionPerformed
+        new CadastroFornecedor(listaFornecedores).setVisible(true);
+       
+        comboFornecedor.setModel(new javax.swing.DefaultComboBoxModel(listaFornecedores.toArray()));
+    }//GEN-LAST:event_btFornecedorActionPerformed
+
+    private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
+        comboFornecedor.setModel(new javax.swing.DefaultComboBoxModel(listaFornecedores.toArray()));
+    }//GEN-LAST:event_formWindowGainedFocus
+
+    private void btUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btUsuarioActionPerformed
+        new CadastroUsuario(listaUsuarios).setVisible(true);
+    }//GEN-LAST:event_btUsuarioActionPerformed
+
+    private void btnCadastroClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastroClientesActionPerformed
+        new CadastroCliente(listaClientes).setVisible(true);
+    }//GEN-LAST:event_btnCadastroClientesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -70,5 +266,21 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btFornecedor;
+    private javax.swing.JButton btNovo;
+    private javax.swing.JButton btSalvar;
+    private javax.swing.JButton btUsuario;
+    private javax.swing.JButton btnCadastroClientes;
+    private javax.swing.JComboBox<String> comboFornecedor;
+    private javax.swing.JComboBox<Produto> comboProduto;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
     // End of variables declaration//GEN-END:variables
 }
+
